@@ -1,0 +1,267 @@
+video#bgvid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(../images/homepage-background-2.jpg) no-repeat;
+    background-size: cover;
+}
+
+.index-center{
+    width: 400px;
+    margin: 300px auto;
+}
+.index-center h1{
+    color: whitesmoke;
+    font-size: 50px;
+    font-family: "Brush Script Std"
+}
+
+.index-center span{
+    padding: 0 10px 10px 0;
+    float: right;
+    color: whitesmoke;
+    font-size: 15px;
+    font-family: "Brush Script Std"
+}
+
+.header-container-left{
+    float: left
+}
+
+.header-container-right{
+    position: absolute;
+    float: right;
+    top: 20px;
+    right: 20px;
+}
+.header-container-right i{
+    color: whitesmoke;
+}
+
+.navigation-menu-right{
+    position: absolute;
+    background-color: whitesmoke;
+    opacity: 0.5;
+    width: 100%;
+    display: none;
+}
+.navigation-container{
+    display: none;
+    float: right;
+    height: auto;
+    width: 50%;
+    padding-top: 120px;
+    background-color: #CFD5D8;
+    color: whitesmoke;
+    position: absolute;
+    top: 70px;
+    right: 0;
+}
+.arrow-container{
+    float: left;
+    width: 100%;
+}
+.navigation-items{
+    height: 150px;
+}
+.navigation-item-members{
+    background-color: #FF5722;
+    height: inherit;
+}
+.navigation-item-photos{
+    background-color: #2E7D32;
+    height: inherit;
+}
+.navigation-item-adventures{
+    background-color: #4A148C;
+    height: inherit;
+}
+.icon-text-container{
+    width: 100px;
+    margin: auto auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.navigation-item:hover{
+    width: 96%;
+    margin: 0 auto;
+    opacity: 0.5;
+}
+
+.section-navigation .header-container-right{
+    z-index: 1000;
+}
+
+/*MEMBERS*/
+.members-container{
+    padding-top: 300px;
+}
+.img-members{
+    width: 200px;
+    height: 200px !important;
+}
+
+/*MEMBER PAGE*/
+.background-member-solo{
+    position: fixed;
+    width: 100%;
+    height: 60%;
+    background-size: cover;
+}
+
+.member-solo-container{
+    margin-top: 300px;
+    min-height: 500px;
+    height: auto;
+}
+
+.member-solo{
+    background-color: #FFFFFF;
+    height: auto;
+    min-height: 460px;
+}
+
+.member-solo-body{
+    padding: 30px 15px 15px 15px;
+}
+
+.member-solo-body-left .img-container img{
+    width: 100%;
+}
+
+.info-name-container div:nth-child(2), .info-name-container div:nth-child(3){
+    padding-top: 15px
+}
+.hello{
+    font-weight: 500;
+    color: whitesmoke;
+    text-align: center;
+    width: 100px;
+    background-color: #E15C5F;
+    line-height: 40px;
+    height: 40px;
+}
+.name{
+    font-size: 40px;
+}
+.profession{
+    font-size: 20px;
+}
+.member-solo-footer{
+    margin-top: 30px;
+    background-color: #E15C5F;
+    height: 100px;
+}
+.member-footer{
+    width: 400px;
+    margin: 0 auto;
+    color: whitesmoke;
+}
+.social-media-container{
+    margin-top: 30px;
+}
+
+
+/*LOG IN REGISTER*/
+.login-register-container{
+    margin: 300px auto;
+}
+
+@media only screen and (min-width: 300px) {
+    .navigation-container{
+        width: 90%;
+    }
+    .members-container{
+        padding-top: 150px;
+    }
+    .member-solo{
+        min-height: 790px;
+    }
+    .member-solo-container{
+        margin-top: 150px;
+    }
+
+    .index-center{
+        width: 100%;
+    }
+    .index-center h1{
+        font-size: 44px;
+    }
+}
+
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (min-width: 480px) {
+    .navigation-container{
+        width: 90%;
+    }
+    .members-container{
+        padding-top: 150px;
+    }
+    .member-solo{
+        min-height: 790px;
+    }
+    .member-solo-container{
+        margin-top: 150px;
+    }
+    .index-center{
+        width: 100%;
+    }
+    .index-center h1{
+        font-size: 44px;
+    }
+}
+
+/* TABLETS PORTRAIT */
+@media only screen and (min-width: 768px) {
+    .navigation-container{
+        width: 50%;
+    }
+    .member-solo{
+        min-height: 460px;
+    }
+    .members-container{
+        padding-top: 300px;
+    }
+    .member-solo-container{
+        margin-top: 300px;
+    }
+    .index-center{
+        width: 400px;
+    }
+    .index-center h1{
+        font-size: 50px;
+    }
+}
+
+
+/* TABLET LANDSCAPE / DESKTOP */
+@media only screen and (min-width: 1024px) {
+    .navigation-container{
+        width: 50%;
+    }
+    .members-container{
+        margin-top: 300px;
+    }
+    .member-solo{
+        min-height: 460px;
+    }
+    .member-solo-container{
+        margin-top: 300px;
+    }
+    .index-center{
+        width: 400px;
+    }
+    .index-center h1{
+        font-size: 50px;
+    }
+}
