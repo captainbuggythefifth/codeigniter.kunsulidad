@@ -59,4 +59,7 @@ $route['members'] = 'UsersController/members';
 $route['login']     =   "AuthController/login";
 $route['register']  =   "AuthController/register";
 
+$route['photos/create'] = "PhotosController/create";
+$route['social-media/create'] = "SocialMediaController/create";
+
 

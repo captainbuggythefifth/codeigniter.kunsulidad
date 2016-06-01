@@ -19,17 +19,8 @@ class UsersModel extends CI_Model
     }
 
     function create($aUser){
-        /*$sPassword = $this->encrypt->sha1($aUser['password']);
-        $aUser['password'] = $sPassword;*/
-        $bDuplicate = false;
-        if($this->check('username', $aUser['username'])){
-            $bDuplicate = $this->check('email', $aUser['email']);
-            if($bDuplicate == true){
-                //return array('reason');
-            }
-        }
-
-        $result = $this->db->insert($this->table, $aUser);
+        $this->db->insert($this->table, $aUser);
+        $result = $this->db->insert_id();
         return $result;
     }
 
@@ -40,7 +31,7 @@ class UsersModel extends CI_Model
     }
 
     function getUsers($iOffset = 0, $iLimit = 0){
-        $this->db->where('status', '1');
+        $this->db->where('status', $this->STATUS_ACTIVE);
         $this->db->order_by('first_name', 'asc');
         $result = $this->db->get($this->table);
         return $result->result_array();
@@ -53,9 +44,11 @@ class UsersModel extends CI_Model
     }
 
     function check($sCheckFor, $sUserDetail){
+        var_dump($sCheckFor, $sUserDetail);
         $this->db->where($sCheckFor, $sUserDetail);
         $result = $this->db->get($this->table);
-        if($result){
+        if($result->num_rows > 0){
+            var_dump("DIRI");
             return false;
         }
         else{

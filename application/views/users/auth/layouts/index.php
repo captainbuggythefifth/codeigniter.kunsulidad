@@ -23,6 +23,8 @@
     ?>
 </div>
 
+
+
 <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/js/material.min.js"></script>
@@ -35,6 +37,10 @@
         }
     }
 ?>
+
+<div class="user-container" style="display: none">
+    <input type="hidden" name="iUserID" value="12"/>
+</div>
 
 <script>
     $.material.init();

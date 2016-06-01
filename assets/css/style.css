@@ -174,8 +174,17 @@ video#bgvid {
 
 /*LOG IN REGISTER*/
 .login-register-container{
-    margin: 300px auto;
+    margin: 100px auto;
 }
+
+.form-group .help-block-error-message{
+    margin-top: 40px;
+}
+
+.panel-social-media-registration-container, .panel-photo-registration-container, .panel-welcome-container {
+    display: none;
+}
+
 
 @media only screen and (min-width: 300px) {
     .navigation-container{

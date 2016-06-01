@@ -1,6 +1,6 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class PhotosModel extends CI_Model
+class SocialMediaModel extends CI_Model
 {
     private $table;
     public $STATUS_ACTIVE = 1;
@@ -9,21 +9,14 @@ class PhotosModel extends CI_Model
 
     //public $TYPE_MEMBERS = 1;
 
-    public $TYPE_USERS_PROFILE = 1;
-    public $TYPE_USERS_BACKGROUND = 2;
-
-    const TYPE_USERS_PROFILE = 1;
-    const TYPE_USERS_BACKGROUND = 2;
-
     function __construct(){
         parent::__construct();
 
-        $this->table = 'photos';
-        // $this->password_check();
+        $this->table = 'social_media';
     }
 
-    function create($aPhoto){
-        $this->db->insert($this->table, $aPhoto);
+    function create($aSocialMedia){
+        $this->db->insert($this->table, $aSocialMedia);
         $result = $this->db->insert_id();
         return $result;
     }
