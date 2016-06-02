@@ -99,7 +99,23 @@
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/js/material.min.js"></script>
 <script type="text/javascript" src="/assets/js/ripples.min.js"></script>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '161055383981422',
+            xfbml      : true,
+            version    : 'v2.6'
+        });
+    };
 
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 <script type="text/javascript">
     $('.toggle-navigation-right').on('click', function () {
         console.log("clicked");

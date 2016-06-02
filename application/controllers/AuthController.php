@@ -48,7 +48,7 @@ class AuthController extends CI_Controller {
                     'message'   => "Successfully created a new user!",
                     'iUserID'     => $result,
                 );
-                $aUser = $this->UsersModel->getUsersByID($result);
+                $aUser = $this->UsersModel->getUserByID($result);
                 $this->session->set_userdata($aUser);
                 echo json_encode($aResult);
             }
@@ -64,13 +64,13 @@ class AuthController extends CI_Controller {
                 'users/auth/welcome/index'
             );
             $aLoad['aJS'] = array(
-                '/assets/js/custom/users/service.js',
-                '/assets/js/custom/users/core.js',
-                '/assets/js/custom/users/ui.js',
-
                 '/assets/js/custom/photos/service.js',
                 '/assets/js/custom/photos/core.js',
                 '/assets/js/custom/photos/ui.js',
+
+                '/assets/js/custom/users/service.js',
+                '/assets/js/custom/users/core.js',
+                '/assets/js/custom/users/ui.js',
 
                 '/assets/js/custom/social-media/service.js',
                 '/assets/js/custom/social-media/core.js',
@@ -91,6 +91,10 @@ class AuthController extends CI_Controller {
             );
             $this->load->view('users/auth/layouts/index', $aLoad);
         }
+    }
+
+    public function fblogin(){
+        $this->load->view('users/auth/fb/index');
     }
 
 }

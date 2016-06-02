@@ -28,7 +28,7 @@ class PhotosModel extends CI_Model
         return $result;
     }
 
-    function getUsersByID($iUserID){
+    function getUserByID($iUserID){
         $this->db->where('id', $iUserID);
         $result = $this->db->get($this->table);
         return $result->row_array();

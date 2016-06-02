@@ -1,4 +1,6 @@
 var users = users || {};
+var photos = photos || {};
+var socialMedia = socialMedia || {};
 
 users.core = {
     Binders: {
@@ -34,6 +36,36 @@ users.core = {
                     form.find("button").html("NEXT");
                 }
             })
+        },
+        _fbCreate: function(e){
+            FB.getLoginStatus(function (response) {
+                if(response.status === 'connected'){
+                    FB.logout();
+                }
+                else{
+                    FB.login(function(response) {
+                        if (response.authResponse) {
+                            FB.api('/me', {fields: 'first_name, last_name, email, cover, link, picture.type(large)'}, function(response) {
+                                console.log(JSON.stringify(response));
+                                users.core.Binders._fillFields(response);
+                                $('.switch-photo-register').trigger("click");
+                                photos.core.Binders._fillFields(response);
+                                socialMedia.core.Binders._fillFields(response);
+                            });
+                        } else {
+                            console.log('User cancelled login or did not fully authorize.');
+                        }
+                    }, {
+                        scope: 'email,public_profile,user_about_me,user_photos'
+                    });
+                }
+            });
+        },
+        _fillFields: function (data) {
+            var $form = $('.user-registration');
+            $form.find("input[name='first_name']").val(data.first_name).parent().removeClass("is-empty");
+            $form.find("input[name='last_name']").val(data.last_name).parent().removeClass("is-empty");
+            $form.find("input[name='email']").val(data.email).parent().removeClass("is-empty");
         }
     },
     FormMovement: {

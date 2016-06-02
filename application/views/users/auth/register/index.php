@@ -61,8 +61,18 @@
                             
                         </div>
 
+
                         <div class="form-group">
                             <div class="col-md-12">
+                                <div style="float: left">
+                                    <div class="facebook-register-container col-sm-12 col-md-12">
+                                        <div class="facebook-register">
+                                            <button type="button" class="btn btn-raised btn-block fb-register" style="background-color: #2196F3; color: whitesmoke">
+                                                FILL WITH FACEBOOK &nbsp; <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div style="float: right">
                                     <button type="submit" class="btn btn-raised btn-info" data-next="panel-photo-registration-container">NEXT</button>
                                 </div>

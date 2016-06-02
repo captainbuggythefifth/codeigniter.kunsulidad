@@ -6,8 +6,6 @@ socialMedia.core = {
             var form = $(e.target);
             console.log(form);
             var data = form.serialize();
-            console.log(data);
-            data.user_id = $('input[name="iUserID"]').val();
             socialMedia.service._create(data, {
                 success: function (result) {
                     console.log(result);
@@ -22,9 +20,10 @@ socialMedia.core = {
                 }
             })
         },
-        /*display:   this._privateFunctions._display(e),
-        update:    this._privateFunctions._update(e),
-        delete:    this._privateFunctions._delete(e)*/
+        _fillFields: function (data) {
+            var $form = $('.social-media-registration');
+            $form.find("input[name='facebook']").val(data.link).parent().removeClass("is-empty");
+        }
     },
 
     FormMovement: {

@@ -17,4 +17,17 @@ photos.service = {
             callback && callback.done(data);
         });
     },
+    _createFromCloud: function (data, callback) {
+        $.ajax({
+            url: '/photos/createFromCloud',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function(result){
+                callback && callback.success(result);
+            }
+        }).always(function(data){
+            callback && callback.done(data);
+        });
+    }
 }

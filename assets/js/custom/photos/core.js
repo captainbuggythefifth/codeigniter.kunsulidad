@@ -8,7 +8,6 @@ photos.core = {
 
             var formData = new FormData(e.target);
             formData.append("iUserID", $('input[name="iUserID"]').val());
-
             photos.service._create(formData, {
                 success: function (result) {
                     console.log(result);
@@ -23,10 +22,38 @@ photos.core = {
                     }
                 }
             })
+            
         },
-        /*display:   this._privateFunctions._display(e),
-        update:    this._privateFunctions._update(e),
-        delete:    this._privateFunctions._delete(e)*/
+        _createFromCloud: function (e) {
+            var form = $(e.target);
+            var data = form.serializeArray();
+            data.push({
+                name: "user_id", value: $('input[name="iUserID"]').val()
+            });
+            photos.service._createFromCloud(data, {
+                success: function (result) {
+                    console.log(result);
+                    if(result.status == true){
+                        console.log(result);
+                        photos.core.FormMovement._next();
+                    }
+                },
+                done: function(result){
+                    if(result.status == false){
+                        form.find('.errors').append(result.message);
+                    }
+                }
+            });
+        },
+        _fillFields: function (data) {
+            var $form = $('.photo-cloud-registration');
+            $form.find('input[name="cloud_photo_background"]').val(data.cover.source).parents().closest(".label-floating").removeClass("is-empty");
+            $form.find('input[name="cloud_photo_profile"]').val(data.picture.data.url).parents().closest(".label-floating").removeClass("is-empty");
+        },
+        _switchPhotoRegister: function (e) {
+            var $this = $(e.target);
+            $this.parents().find('.togglePhotoRegistration').toggle();
+        }
     },
     FormMovement: {
         _next: function () {

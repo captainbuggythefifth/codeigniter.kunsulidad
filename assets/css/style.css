@@ -184,7 +184,9 @@ video#bgvid {
 .panel-social-media-registration-container, .panel-photo-registration-container, .panel-welcome-container {
     display: none;
 }
-
+.photo-registration-cloud-container{
+    display: none;
+}
 
 @media only screen and (min-width: 300px) {
     .navigation-container{

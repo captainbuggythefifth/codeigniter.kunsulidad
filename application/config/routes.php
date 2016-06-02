@@ -60,6 +60,11 @@ $route['login']     =   "AuthController/login";
 $route['register']  =   "AuthController/register";
 
 $route['photos/create'] = "PhotosController/create";
+$route['photos/createFromCloud'] = "PhotosController/createFromCloud";
 $route['social-media/create'] = "SocialMediaController/create";
+
+
+
+$route['fb/login'] = "AuthController/fblogin";
 
 

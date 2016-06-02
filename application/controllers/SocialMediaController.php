@@ -20,7 +20,7 @@ class SocialMediaController extends CI_Controller
         $aPost['user_id'] = $this->session->userdata('id');
         $result = $this->SocialMediaModel->create($aPost);
 
-        $aUser = $this->UsersModel->getUsersByID($aPost['user_id']);
+        $aUser = $this->UsersModel->getUserByID($aPost['user_id']);
         if($result){
             $aResult = array(
                 'status'    => true,
