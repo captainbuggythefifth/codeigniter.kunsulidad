@@ -1,4 +1,5 @@
-<div class="background-member-solo" style="background-image: url(<?php echo $aUser['photoBackground']['channel']?>)">
+<?php var_dump($aUser);die()?>
+<div class="background-member-solo" style="background-image: url(<?php echo (base_url() . $aUser['photoBackground']['channel']); ?>)">
 
 </div>
 <section>
@@ -15,7 +16,7 @@
                         <div class="member-solo-body col-sm-12 col-md-12">
                             <div class="member-solo-body-left col-sm-4 col-md-4">
                                 <div class="img-container img-responsive img-thumbnail">
-                                    <img src="<?php echo $aUser['photoProfile']['channel']; ?>" alt="">
+                                    <img src="<?php echo base_url() . $aUser['photoProfile']['channel']; ?>" alt="">
                                 </div>
                             </div>
                             <div class="member-solo-body-right col-sm-8 col-md-8">
@@ -29,7 +30,7 @@
                                                 <p><span>I'm </span><span><b><?php echo $aUser['first_name'] . " " . $aUser['middle_name'] . " " . $aUser['last_name']; ?></b></span></p>
                                             </div>
                                             <div class="profession">
-                                                <p><?php echo $aUser['profession']?></p>
+                                                <p><?php echo ($aUser['profession'] != "" ? $aUser['profession'] : "Not yet specified")?></p>
                                             </div>
                                         </div>
                                         <hr />
@@ -50,16 +51,16 @@
                                             </div>
                                             <div class="info-details-output-right col-xs-8 col-sm-6 col-md-6">
                                                 <div class="details-output-age">
-                                                    <?php echo $aUser['age']?>
+                                                    <?php echo ($aUser['age']  != "" ? $aUser['age'] : "Not yet specified")?>
                                                 </div>
                                                 <div class="details-output-address">
-                                                    <?php echo $aUser['address']?>
+                                                    <?php echo ($aUser['address']  != "" ? $aUser['address'] : "Not yet specified")?>
                                                 </div>
                                                 <div class="details-output-email">
-                                                    <?php echo $aUser['email']?>
+                                                    <?php echo ($aUser['email']  != "" ? $aUser['email'] : "Not yet specified")?>
                                                 </div>
                                                 <div class="details-output-phone">
-                                                    <?php echo $aUser['phone']?>
+                                                    <?php echo ($aUser['phone']  != "" ? $aUser['phone'] : "Not yet specified")?>
                                                 </div>
                                             </div>
                                         </div>
@@ -70,23 +71,35 @@
                         <div class="member-solo-footer col-xs-12 col-sm-12 col-md-12">
                             <div class="member-footer">
                                 <div class="social-media-container">
-                                    <div class="social-media col-xs-2 col-sm-2 col-md-2">
-                                        <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                                    <div class="social-media">
+                                        <div class="social-media-icon-container">
+                                            <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                                        </div>
                                     </div>
-                                    <div class="social-media col-xs-2 col-sm-2 col-md-2">
-                                        <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+                                    <div class="social-media">
+                                        <div class="social-media-icon-container">
+                                            <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+                                        </div>
                                     </div>
-                                    <div class="social-media col-xs-2 col-sm-2 col-md-2">
-                                        <i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
+                                    <div class="social-media">
+                                        <div class="social-media-icon-container">
+                                            <i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
+                                        </div>
                                     </div>
-                                    <div class="social-media col-xs-2 col-sm-2 col-md-2">
-                                        <i class="fa fa-google-plus fa-2x" aria-hidden="true"></i>
+                                    <div class="social-media">
+                                        <div class="social-media-icon-container">
+                                            <i class="fa fa-google-plus fa-2x" aria-hidden="true"></i>
+                                        </div>
                                     </div>
-                                    <div class="social-media col-xs-2 col-sm-2 col-md-2">
-                                        <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                                    <div class="social-media">
+                                        <div class="social-media-icon-container">
+                                            <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                                        </div>
                                     </div>
-                                    <div class="social-media col-xs-2 col-sm-2 col-md-2">
-                                        <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                                    <div class="social-media">
+                                        <div class="social-media-icon-container">
+                                            <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

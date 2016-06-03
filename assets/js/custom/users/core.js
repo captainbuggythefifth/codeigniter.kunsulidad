@@ -45,7 +45,7 @@ users.core = {
                 else{
                     FB.login(function(response) {
                         if (response.authResponse) {
-                            FB.api('/me', {fields: 'first_name, last_name, email, cover, link, picture.type(large)'}, function(response) {
+                            FB.api('/me', {fields: 'first_name, last_name, email, cover, link, picture.width(720).height(720)'}, function(response) {
                                 console.log(JSON.stringify(response));
                                 users.core.Binders._fillFields(response);
                                 $('.switch-photo-register').trigger("click");

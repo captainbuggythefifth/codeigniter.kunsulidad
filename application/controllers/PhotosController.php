@@ -27,9 +27,9 @@ class PhotosController extends CI_Controller {
         foreach ($files as $fileName => $fileValue){
             switch ($fileName){
                 case "photo_profile":
-                    $config['upload_path'] = './uploads/users/' . $aUser['username'] . '/profile/';
+                    $config['upload_path'] = '/uploads/users/' . $aUser['username'] . '/profile/';
 
-                    if(!is_dir($config['upload_path'])) mkdir($config['upload_path'], 0777, TRUE);
+                    if(!is_dir("." . $config['upload_path'])) mkdir("." . $config['upload_path'], 0777, TRUE);
 
                     $this->upload->initialize($config);
 
@@ -61,9 +61,9 @@ class PhotosController extends CI_Controller {
                 break;
 
                 case "photo_background":
-                    $config['upload_path'] = './uploads/users/' . $aUser['username'] . '/background/';
+                    $config['upload_path'] = '/uploads/users/' . $aUser['username'] . '/background/';
 
-                    if(!is_dir($config['upload_path'])) mkdir($config['upload_path'], 0777, TRUE);
+                    if(!is_dir("." . $config['upload_path'])) mkdir("." . $config['upload_path'], 0777, TRUE);
 
                     $this->upload->initialize($config);
 
@@ -130,8 +130,8 @@ class PhotosController extends CI_Controller {
         //profile
         $sPhotoProfile = $aPhotos['photo_profile'];
         $aUser = $this->UsersModel->getUserByID($aPosts['user_id']);
-        $sDestination = './uploads/users/' . $aUser['username'] . '/profile/';
-        if(!is_dir($sDestination)) mkdir($sDestination, 0777, TRUE);
+        $sDestination = '/uploads/users/' . $aUser['username'] . '/profile/';
+        if(!is_dir("." . $sDestination)) mkdir("." . $sDestination, 0777, TRUE);
         $sChannel =  $sDestination . random_string('alnum', 30) . $this->determineFileExtension($sPhotoProfile);
 
         $aPhoto = array(
@@ -144,14 +144,14 @@ class PhotosController extends CI_Controller {
 
         //background
         $sPhotoBackground = $aPhotos['photo_background'];
-        $sDestination = './uploads/users/' . $aUser['username'] . '/background/';
-        if(!is_dir($sDestination)) mkdir($sDestination, 0777, TRUE);
+        $sDestination = '/uploads/users/' . $aUser['username'] . '/background/';
+        if(!is_dir("." . $sDestination)) mkdir("." . $sDestination, 0777, TRUE);
         $sChannel =  $sDestination . random_string('alnum', 30) . $this->determineFileExtension($sPhotoBackground);
 
         $aPhoto = array(
             'user_id' => $aUser['id'],
             'channel'   => $sChannel,
-            'type'  => PhotosModel::TYPE_USERS_PROFILE
+            'type'  => PhotosModel::TYPE_USERS_BACKGROUND                  
         );
         $this->getSaveImage($sChannel, $sPhotoBackground);
         $result = $this->PhotosModel->create($aPhoto);
@@ -199,6 +199,6 @@ class PhotosController extends CI_Controller {
     }
 
     function getSaveImage($sImageDestination, $sChannel){
-        file_put_contents($sImageDestination, file_get_contents($sChannel));
+        file_put_contents("." . $sImageDestination, file_get_contents($sChannel));
     }
 }

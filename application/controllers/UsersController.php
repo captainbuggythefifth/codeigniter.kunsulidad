@@ -7,6 +7,7 @@ class UsersController extends CI_Controller {
         parent::__construct();
         $this->load->model('UsersModel');
         $this->load->model('PhotosModel');
+        $this->load->model('SocialMediaModel');
     }
 
     public function members($sUsername = null){
@@ -26,6 +27,7 @@ class UsersController extends CI_Controller {
             $aUser = $this->UsersModel->getUserByUsername($sUsername);
             $aUser['photoProfile'] = $this->PhotosModel->getPhotoFromUserProfile($aUser['id']);
             $aUser['photoBackground'] = $this->PhotosModel->getPhotoFromUserBackground($aUser['id']);
+            $aUser['socialMedia'] = $this->SocialMediaModel->getSocialMediaByUserID($aUser['id']);
             $aLoad['aViews'] = array(
                 'users/pages/members/member'
             );
