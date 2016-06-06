@@ -182,9 +182,21 @@ video#bgvid {
     text-align: center;
 }
 
+.errors{
+    display: none;
+}
+
+.snackbar.toast{
+    text-align: center;
+}
+
+.profile-items{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
 
 
-/*LOG IN REGISTER*/
+    /*LOG IN REGISTER*/
 .login-register-container{
     margin: 100px auto;
 }
@@ -198,6 +210,10 @@ video#bgvid {
 }
 .photo-registration-cloud-container{
     display: none;
+}
+
+.profile-container{
+    padding-top: 100px;
 }
 
 @media only screen and (min-width: 300px) {
@@ -219,6 +235,12 @@ video#bgvid {
     }
     .index-center h1{
         font-size: 44px;
+    }
+    .profile-container{
+        padding-top: 0;
+    }
+    .profile-items-container{
+        display: inline-flex;
     }
 }
 
@@ -242,6 +264,13 @@ video#bgvid {
     .index-center h1{
         font-size: 44px;
     }
+    .profile-container{
+        padding-top: 0;
+    }
+    .profile-items-container{
+        display: inline-flex;
+    }
+
 }
 
 /* TABLETS PORTRAIT */
@@ -264,6 +293,13 @@ video#bgvid {
     .index-center h1{
         font-size: 50px;
     }
+    .profile-container{
+        padding-top: 100px;
+    }
+    .profile-items-container{
+        display: block;
+    }
+
 }
 
 
@@ -286,5 +322,11 @@ video#bgvid {
     }
     .index-center h1{
         font-size: 50px;
+    }
+    .profile-container{
+        padding-top: 100px;
+    }
+    .profile-items-container{
+        display: block;
     }
 }

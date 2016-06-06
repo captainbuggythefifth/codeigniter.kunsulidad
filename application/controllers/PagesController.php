@@ -23,13 +23,14 @@ class PagesController extends CI_Controller {
         $aLoad['aViews'] = array(
             'users/pages/index/index'
         );
-        $this->load->view('users/layouts/index', $aLoad);
+        $this->load->view('users/pages/layouts/index', $aLoad);
     }
     
     public function members(){
         $aLoad['aViews'] = array(
             'users/pages/members/index'
         );
-        $this->load->view('users/layouts/index', $aLoad);
+        $this->load->view('users/pages/layouts/index', $aLoad);
     }
+    
 }

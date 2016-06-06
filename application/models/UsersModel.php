@@ -43,6 +43,13 @@ class UsersModel extends CI_Model
         return $result->row_array();
     }
 
+    function getUserByUsernameAndPassword($aUser){
+        $this->db->where('username', $aUser['username']);
+        $this->db->where('password', $aUser['password']);
+        $result = $this->db->get($this->table);
+        return $result->row_array();
+    }
+
     function check($sCheckFor, $sUserDetail){
         var_dump($sCheckFor, $sUserDetail);
         $this->db->where($sCheckFor, $sUserDetail);
@@ -54,6 +61,12 @@ class UsersModel extends CI_Model
         else{
             return true;
         }
+    }
+
+    function getUserByEmail($sUserEmail = null){
+        $this->db->where('email', $sUserEmail);
+        $result = $this->db->get($this->table);
+        return $result->row_array();
     }
 
 

@@ -11,6 +11,7 @@
     <link rel="stylesheet" media="all" href="/assets/css/ripples.min.css">
     <link rel="stylesheet" media="all" href="/assets/css/animate.css">
     <link rel="stylesheet" media="all" href="/assets/css/style.css">
+    <link href="//fezvrasta.github.io/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
     <title>ALALAH</title>
 </head>
 <body>
@@ -29,11 +30,12 @@
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/js/material.min.js"></script>
 <script type="text/javascript" src="/assets/js/ripples.min.js"></script>
+<script src="//fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>
 
 <?php
     if(isset($aJS) && is_array($aJS)){
         foreach ($aJS as $js){
-            echo "<script type='text/javascript' src='" . $js . "'></script>";
+            echo "<script type='text/javascript' src='" . $js . "'></script>" . PHP_EOL;
         }
     }
 ?>
@@ -60,6 +62,7 @@
 </script>
 <script>
     $.material.init();
+    $('[data-toggle="tooltip"]').tooltip();
 </script>
 
 </body>

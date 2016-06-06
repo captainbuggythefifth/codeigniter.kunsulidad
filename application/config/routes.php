@@ -58,13 +58,15 @@ $route['members/(:any)'] = 'UsersController/members/$1';
 $route['members'] = 'UsersController/members';
 $route['login']     =   "AuthController/login";
 $route['register']  =   "AuthController/register";
+$route['update']    = "UsersController/update";
 
 $route['photos/create'] = "PhotosController/create";
 $route['photos/createFromCloud'] = "PhotosController/createFromCloud";
 $route['social-media/create'] = "SocialMediaController/create";
 
-
-
-$route['fb/login'] = "AuthController/fblogin";
+$route['fbLogin'] = "AuthController/fbLogin";
+$route['getItem/(:any)'] = "ProfileController/getItem/$1";
+$route['getItem/(:any)/(:any)'] = "ProfileController/getItem/$1/$2";
+$route['profile/(:any)'] = "ProfileController/index/$1";
 
 

@@ -84,17 +84,82 @@ class AuthController extends CI_Controller {
     public function login(){
         if($this->input->post()){
             $aUser = $this->input->post();
+
+            $this->load->library('form_validation');
+
+            $this->form_validation->set_rules('username', 'Username', 'required|min_length[2]|max_length[12]');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+
+            if ($this->form_validation->run() == FALSE) {
+                $aPosts = $this->input->post();
+                $aFields = array();
+                foreach ($aPosts as $fieldName => $fieldData){
+                    if(form_error($fieldName)){
+                        $aFields[$fieldName] = form_error($fieldName);
+                    }
+                }
+                $aResult = array(
+                    'status'    => false,
+                    'message'   => validation_errors(),
+                    'aFields'   => $aFields
+                );
+                echo json_encode($aResult);
+            }
+            else{
+                $aResult = array();
+                $result = $this->UsersModel->getUserByUsernameAndPassword($aUser);
+                if($result == null){
+                    $aResult = array(
+                        'status'    => false,
+                        'message'   => "Username or password incorrect"
+                    );
+                }
+                else{
+                    $this->session->set_userdata($result);
+                    $aResult = array(
+                        'status'    => true,
+                        'message'   => "Successfully logged in"
+                    );
+                }
+                echo json_encode($aResult);
+            }
+
+
         }
         else {
             $aLoad['aViews'] = array(
                 'users/auth/login/index'
             );
+            $aLoad['aJS'] = array(
+                '/assets/js/custom/users/service.js',
+                '/assets/js/custom/users/core.js',
+                '/assets/js/custom/users/ui.js',
+            );
             $this->load->view('users/auth/layouts/index', $aLoad);
         }
     }
 
-    public function fblogin(){
-        $this->load->view('users/auth/fb/index');
+    public function fbLogin(){
+
+        //$this->load->view('users/auth/fb/index');
+        $aUser = $this->input->post();
+        $result = $this->UsersModel->getUserByEmail($aUser['email']);
+        if($result){
+            $aResult = array(
+                'status'    => true,
+                'message'   => "Successfully logged in. We will redirect you in a few seconds",
+                'sUsername' => $result['username']
+            );
+        }
+        else{
+            $this->session->set_userdata($result);
+            $aResult = array(
+                'status'    => false,
+                'message'   => "Email does not exist. Please sign up",
+            );
+
+        }
+        echo json_encode($aResult);
     }
 
 }

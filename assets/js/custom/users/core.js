@@ -19,6 +19,7 @@ users.core = {
                             var sWarning = $("<span></span>").addClass("help-block help-block-error-message");
                             sWarning.html(value);
                             var formParent = form.find("input[name='"+ key +"']").parent();
+
                             if(formParent.find('.help-block').hasClass('help-block-error-message')){
                                 formParent.addClass('has-error').find('.help-block').html(value);
                             }
@@ -66,6 +67,119 @@ users.core = {
             $form.find("input[name='first_name']").val(data.first_name).parent().removeClass("is-empty");
             $form.find("input[name='last_name']").val(data.last_name).parent().removeClass("is-empty");
             $form.find("input[name='email']").val(data.email).parent().removeClass("is-empty");
+        },
+        _login: function (e) {
+            var form = $(e.target);
+            var data = form.serialize();
+            
+            users.service._login(data, {
+                success: function (response) {
+                    console.log(response);
+                    if(response.status == false){
+                        if(response.aFields === "undefined"){
+                            $.each(response.aFields, function (key, value) {
+                                var sWarning = $("<span></span>").addClass("help-block help-block-error-message");
+                                sWarning.html(value);
+                                var formParent = form.find("input[name='"+ key +"']").parent();
+                                if(formParent.find('.help-block').hasClass('help-block-error-message')){
+                                    formParent.find('.help-block').html(value);
+                                    formParent.parents().closest(".form-group").addClass('has-error');
+                                }
+                                else{
+                                    formParent.parents().closest(".form-group").addClass('has-error');
+                                    formParent.addClass('has-error').prepend(sWarning);
+                                }
+                            })
+                        }
+                        else{
+
+                            var options =  {
+                                content: response.message,
+                                style: "toast",
+                                timeout: 2000
+                            };
+                            $.snackbar(options);
+                        }
+                    }
+                    else{
+                        //$('input[name="iUserID"]').val(result.iUserID);
+                        //users.core.FormMovement._next();
+                        console.log(response);
+                    }
+                },
+                done: function (response) {
+
+                    //var formParent = form.find("input[name='"+ key +"']").parent();
+
+                }
+            });
+        },
+        _fbLogin: function (e) {
+            FB.getLoginStatus(function (response) {
+                FB.login(function(response) {
+                    if (response.authResponse) {
+                        FB.api('/me', {fields: 'email'}, function(response) {
+                            //console.log(JSON.stringify(response));
+                            var data = {
+                                email: response.email
+                            };
+                            users.service._fbLogin(data, {
+                                success: function (response) {
+                                    if(response.status == true){
+                                        console.log(response);
+                                        setTimeout(function () {
+                                            window.location = "/profile/" + response.sUsername;
+                                        }, 3000);
+
+                                    }
+                                },
+                                done: function (response) {
+                                    var options =  {
+                                        content: response.message,
+                                        style: "toast",
+                                        timeout: 3000
+                                    };
+                                    $.snackbar(options);
+                                }
+                            });
+                        });
+                    } else {
+                        console.log('User cancelled login or did not fully authorize.');
+                    }
+                }, {
+                    scope: 'email,public_profile,user_about_me,user_photos'
+                });
+            });
+        },
+        _update: function (e) {
+            var form = $(e.target);
+            console.log(form);
+            var data = form.serialize();
+            users.service._update(data, {
+                success: function (response) {
+                    if(response.status == false){
+                        $.each(response.aFields, function (key, value) {
+                            var sWarning = $("<span></span>").addClass("help-block help-block-error-message");
+                            sWarning.html(value);
+                            var formParent = form.find("input[name='"+ key +"']").parents().find();
+
+                            if(formParent.find('.help-block').hasClass('help-block-error-message')){
+                                formParent.addClass('has-error').find('.help-block').html(value);
+                            }
+                            else{
+                                formParent.addClass('has-error').prepend(sWarning);
+                            }
+                        })
+                    }
+                    else{
+                        $('input[name="iUserID"]').val(result.iUserID);
+                        users.core.FormMovement._next();
+                    }
+                },
+                done: function (response) {
+                    console.log(response);
+                }
+            });
         }
     },
     FormMovement: {
