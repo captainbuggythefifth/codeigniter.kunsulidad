@@ -201,4 +201,26 @@ class PhotosController extends CI_Controller {
     function getSaveImage($sImageDestination, $sChannel){
         file_put_contents("." . $sImageDestination, file_get_contents($sChannel));
     }
+
+    function getPhotosFromDirectory(){
+        $sDirectory = $this->input->post('directory');
+        $dir = $sDirectory;
+        $dh  = opendir($dir);
+        $files = [];
+        while (false !== ($filename = readdir($dh))) {
+            $files[] = $sDirectory . $filename;
+        }
+        $images=preg_grep ('/\.(jpg|jpeg|png|gif)(?:[\?\#].*)?$/i', $files);
+
+
+        $aLoad['aImages'] = $images;
+        $html = $this->load->view('users/profile/partials/images/carousel/index', $aLoad, true);
+
+        $aResult = array(
+            'status' => true,
+            'message'   => "Successfully retrieved photots",
+            'html'   => $html
+        );
+        echo json_encode($aResult);
+    }
 }

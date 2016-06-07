@@ -161,13 +161,14 @@ users.core = {
                         $.each(response.aFields, function (key, value) {
                             var sWarning = $("<span></span>").addClass("help-block help-block-error-message");
                             sWarning.html(value);
-                            var formParent = form.find("input[name='"+ key +"']").parents().find();
-
+                            var formParent = form.find("input[name='"+ key +"']").parents().closest(".form-group");
                             if(formParent.find('.help-block').hasClass('help-block-error-message')){
-                                formParent.addClass('has-error').find('.help-block').html(value);
+                                formParent.find('.help-block').html(value);
+                                formParent.parents().closest(".form-group").addClass('has-error');
                             }
                             else{
-                                formParent.addClass('has-error').prepend(sWarning);
+                                formParent.parents().closest(".form-group").addClass('has-error');
+                                formParent.addClass('has-error').find(".input-group").prepend($(sWarning));
                             }
                         })
                     }

@@ -1,5 +1,5 @@
 <div class="col-md-12">
-    <div class="jumbotron">
+    <div class="well">
         <h1>Profile</h1>
 
         <form class="form-horizontal user-update-profile" action="/login" method="post" name="user-update-profile">

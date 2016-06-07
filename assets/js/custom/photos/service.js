@@ -29,5 +29,18 @@ photos.service = {
         }).always(function(data){
             callback && callback.done(data);
         });
+    },
+    _getPhotosFromDirectory: function (data, callback) {
+        $.ajax({
+            url: '/photos/getPhotosFromDirectory',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function(result){
+                callback && callback.success(result);
+            }
+        }).always(function(data){
+            callback && callback.done(data);
+        });
     }
 }

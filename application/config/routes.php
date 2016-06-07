@@ -69,4 +69,6 @@ $route['getItem/(:any)'] = "ProfileController/getItem/$1";
 $route['getItem/(:any)/(:any)'] = "ProfileController/getItem/$1/$2";
 $route['profile/(:any)'] = "ProfileController/index/$1";
 
+$route['photos/getPhotosFromDirectory'] = "PhotosController/getPhotosFromDirectory";
+
 

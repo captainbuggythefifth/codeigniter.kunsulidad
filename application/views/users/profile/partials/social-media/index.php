@@ -1,5 +1,5 @@
 <div class="col-md-12">
-    <div class="jumbotron">
+    <div class="well">
         <h1>Social Media</h1>
 
         <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>

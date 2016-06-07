@@ -53,6 +53,23 @@ photos.core = {
         _switchPhotoRegister: function (e) {
             var $this = $(e.target);
             $this.parents().find('.togglePhotoRegistration').toggle();
+        },
+        _getPhotosFromDirectory: function (e) {
+            var $this = $(e.target);
+            var data = {
+                'directory' : $this.data("directory")
+            };
+            photos.service._getPhotosFromDirectory(data, {
+                success: function (result) {
+                    if(result.status == true){
+                        console.log(result);
+                        $('.carousel-container').html($(result.html));
+                    }
+                },
+                done: function(result){
+
+                }
+            });
         }
     },
     FormMovement: {

@@ -12,6 +12,11 @@ $body.on('submit', '.photo-cloud-registration', function (e) {
 });
 
 $body.on('click', '.switch-photo-register', function (e) {
-    console.log("SWITCH UI");
+    //console.log("SWITCH UI");
     photos.core.Binders._switchPhotoRegister(e);
 });
+
+$body.on('click', '.getPhotosFromDirectory', function (e) {
+    e.preventDefault();
+    photos.core.Binders._getPhotosFromDirectory(e);
+})

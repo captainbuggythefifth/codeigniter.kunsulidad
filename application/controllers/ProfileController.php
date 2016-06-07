@@ -37,6 +37,10 @@ class ProfileController extends CI_Controller {
         );
         $aLoad['aUser'] = $aUser;
         $aLoad['aJS'] = array(
+            '/assets/js/custom/photos/service.js',
+            '/assets/js/custom/photos/core.js',
+            '/assets/js/custom/photos/ui.js',
+
             '/assets/js/custom/users/service.js',
             '/assets/js/custom/users/core.js',
             '/assets/js/custom/users/ui.js',
