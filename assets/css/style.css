@@ -220,6 +220,28 @@ video#bgvid {
     height: 80px !important;
 }
 
+.carousel-container{
+    position: absolute;
+    width: 100%;
+    background-color: #1f1d1d;
+    opacity: 0.8;
+    height: 100%;
+    visibility: hidden;
+}
+
+.custom-carousel{
+    width: 100%;
+    position: absolute;
+    top: 70px;
+    right: 0;
+}
+.custom-carousel-image{
+    margin: 0 auto;
+}
+.custom-carousel-item{
+    background-color: #1f1d1d;
+}
+
 @media only screen and (min-width: 300px) {
     .navigation-container{
         width: 90%;

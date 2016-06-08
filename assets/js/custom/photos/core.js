@@ -62,8 +62,35 @@ photos.core = {
             photos.service._getPhotosFromDirectory(data, {
                 success: function (result) {
                     if(result.status == true){
-                        console.log(result);
-                        $('.carousel-container').html($(result.html));
+                        var windowWidth = $(window).width();
+                        var windowHeight = $(window).height();
+                        var windowOffset = $('body').offset();
+                        console.log(windowOffset);
+                        var carouselContainer = $('.carousel-container');
+                        carouselContainer.width(windowWidth);
+                        carouselContainer.height(windowHeight);
+                        carouselContainer.offset({
+                            top: windowOffset.top,
+                            left: windowOffset.left
+                        });
+
+                        $('.carousel-inner').html("<div></div>");
+                        var iCtr = 0;
+                        $.each(result.aImages, function (index, value) {
+                            console.log(index);
+                            var $item = $('<div></div>').addClass("item custom-carousel-item");
+                            var $img = $('<img>').addClass("custom-carousel-image").attr("src", value);
+                            if(iCtr == 0){
+                                $item.addClass("active");
+                            }
+                            $item.html($img);
+                            $('.carousel-inner').append($item);
+                            iCtr++;
+                        });
+                        $('.carousel').show();
+                        carouselContainer.css({
+                            visibility: "visible"
+                        });
                     }
                 },
                 done: function(result){

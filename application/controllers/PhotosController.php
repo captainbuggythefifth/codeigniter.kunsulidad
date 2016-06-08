@@ -208,7 +208,7 @@ class PhotosController extends CI_Controller {
         $dh  = opendir($dir);
         $files = [];
         while (false !== ($filename = readdir($dh))) {
-            $files[] = $sDirectory . $filename;
+            $files[] = base_url() . $sDirectory . $filename;
         }
         $images=preg_grep ('/\.(jpg|jpeg|png|gif)(?:[\?\#].*)?$/i', $files);
 
@@ -219,7 +219,8 @@ class PhotosController extends CI_Controller {
         $aResult = array(
             'status' => true,
             'message'   => "Successfully retrieved photots",
-            'html'   => $html
+            'html'   => $html,
+            'aImages'   => $images
         );
         echo json_encode($aResult);
     }

@@ -88,6 +88,9 @@ if(isset($aViews) && is_array($aViews)){
     End rendering
 -->
 </div>
+
+
+
 <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/js/material.min.js"></script>

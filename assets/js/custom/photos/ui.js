@@ -19,4 +19,11 @@ $body.on('click', '.switch-photo-register', function (e) {
 $body.on('click', '.getPhotosFromDirectory', function (e) {
     e.preventDefault();
     photos.core.Binders._getPhotosFromDirectory(e);
+});
+
+$body.on('click', '.carousel-container', function (e) {
+    $(this).css({
+        visibility: "hidden"
+    });
+    $('.carousel').hide();
 })
