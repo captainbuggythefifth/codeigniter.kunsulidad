@@ -145,6 +145,7 @@ class AuthController extends CI_Controller {
         $aUser = $this->input->post();
         $result = $this->UsersModel->getUserByEmail($aUser['email']);
         if($result){
+            $this->session->set_userdata($result);
             $aResult = array(
                 'status'    => true,
                 'message'   => "Successfully logged in. We will redirect you in a few seconds",
@@ -152,7 +153,7 @@ class AuthController extends CI_Controller {
             );
         }
         else{
-            $this->session->set_userdata($result);
+
             $aResult = array(
                 'status'    => false,
                 'message'   => "Email does not exist. Please sign up",
@@ -160,6 +161,10 @@ class AuthController extends CI_Controller {
 
         }
         echo json_encode($aResult);
+    }
+
+    public function logout(){
+        $this->session->sess_destroy();
     }
 
 }

@@ -42,5 +42,33 @@ photos.service = {
         }).always(function(data){
             callback && callback.done(data);
         });
+    },
+    _createPhotoAlbum: function(data, callback){
+        $.ajax({
+            url: '/photos/createPhotoAlbum',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function(result){
+                callback && callback.success(result);
+            }
+        }).always(function(data){
+            callback && callback.done(data);
+        });
+    },
+    _uploadPhotoAlbum: function(data, callback){
+        $.ajax({
+            url: '/photos/uploadPhotoAlbum',
+            type: 'POST',
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function(result){
+                callback && callback.success(result);
+            }
+        }).always(function(data){
+            callback && callback.done(data);
+        });
     }
 }

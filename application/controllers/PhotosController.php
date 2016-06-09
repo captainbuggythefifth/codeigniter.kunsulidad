@@ -214,14 +214,80 @@ class PhotosController extends CI_Controller {
 
 
         $aLoad['aImages'] = $images;
-        $html = $this->load->view('users/profile/partials/images/carousel/index', $aLoad, true);
 
         $aResult = array(
             'status' => true,
-            'message'   => "Successfully retrieved photots",
-            'html'   => $html,
+            'message'   => "Successfully retrieved photos",
             'aImages'   => $images
         );
+        echo json_encode($aResult);
+    }
+    
+    function createPhotoAlbum(){
+        $aResult = array();
+        $aUser = $this->session->userdata();
+        $sDestination = "/uploads/users/" . $aUser['username'] . "/" . $this->input->post("album");
+        if(!is_dir("." . $sDestination)){
+            mkdir("." . $sDestination, 0777, TRUE);
+            $aResult = array(
+                'status'    => true,
+                'message'   => "Successfully created photo album",
+                'destination' => $sDestination
+            );
+        }
+        else{
+            $aResult = array(
+                'status'    => false,
+                'message'   => "Photo Album already exists. Please name it another one",
+                'destination'   => $sDestination
+            );
+
+        }
+        echo json_encode($aResult);
+    }
+
+    function uploadPhotoAlbum(){
+        //TODO
+        //echo json_encode("SUD");
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['encrypt_name'] = TRUE;
+
+        $this->load->library('upload', $config);
+        $files = $_FILES;
+
+        $aUser = $this->session->userdata();
+        
+        $config['upload_path'] = './uploads/users/' . $aUser['username'] . '/' . $this->input->post("album");
+        //var_dump($files);
+        $this->upload->initialize($config);
+
+        if ( ! $this->upload->do_upload("photo-album")) {
+
+            $aResult = array(
+                'status'    => false,
+                'message'   => $this->upload->display_errors(),
+                'uploadPath'   => $config['upload_path'],
+                'originalName'  => $this->upload->data("file_name"),
+                'originalType'  => $this->upload->data("file_type")
+            );
+        }
+        else{
+            $aPhoto = array(
+                'user_id' => $aUser['id'],
+                'channel'   => $config['upload_path'] . $this->upload->data('file_name'),
+                'type'  => PhotosModel::TYPE_USERS_ALBUM
+            );
+
+            $this->PhotosModel->create($aPhoto);
+
+            $aResult = array(
+                'status'    => true,
+                'message'   => "Successfully uploaded image " . $this->upload->data('file_name'),
+                //'aFields'   => $aFields
+            );
+        }
+
+
         echo json_encode($aResult);
     }
 }

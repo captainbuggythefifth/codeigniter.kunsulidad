@@ -27,3 +27,7 @@ $body.on('click', '.carousel-container', function (e) {
     });
     $('.carousel').hide();
 })
+
+$body.on('change', 'input[name="create-photo-album[]"]', function (e) {
+    photos.core.Binders._createPhotoAlbum(e);
+})

@@ -6,13 +6,11 @@ profile.core = {
             var itemHref = $(e.target).data("href");
             profile.service._getItem(itemHref, {
                 success: function (response) {
-                    console.log(response);
                     if(response.status == true){
                         $('.load-profile-item').html($(response.html));
                     }
                 },
                 done: function (response) {
-                    console.log(response);
                 }
             });
         }

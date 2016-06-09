@@ -14,6 +14,7 @@ class PhotosModel extends CI_Model
 
     const TYPE_USERS_PROFILE = 1;
     const TYPE_USERS_BACKGROUND = 2;
+    const TYPE_USERS_ALBUM = 3;
 
     function __construct(){
         parent::__construct();

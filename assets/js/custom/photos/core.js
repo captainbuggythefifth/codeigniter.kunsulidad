@@ -65,7 +65,7 @@ photos.core = {
                         var windowWidth = $(window).width();
                         var windowHeight = $(window).height();
                         var windowOffset = $('body').offset();
-                        console.log(windowOffset);
+
                         var carouselContainer = $('.carousel-container');
                         carouselContainer.width(windowWidth);
                         carouselContainer.height(windowHeight);
@@ -77,7 +77,6 @@ photos.core = {
                         $('.carousel-inner').html("<div></div>");
                         var iCtr = 0;
                         $.each(result.aImages, function (index, value) {
-                            console.log(index);
                             var $item = $('<div></div>').addClass("item custom-carousel-item");
                             var $img = $('<img>').addClass("custom-carousel-image").attr("src", value);
                             if(iCtr == 0){
@@ -97,6 +96,61 @@ photos.core = {
 
                 }
             });
+        },
+        _createPhotoAlbum: function (e) {
+
+            var data = {
+                "album" : $('input[name="photo-album-name"]').val()
+            };
+            if(data == null){
+                var photoAlbumContainer = $('input[name="photo-album-name"]').parent();
+                var sWarning = $("<span></span>").addClass("help-block help-block-error-message");
+                sWarning.html("The album name seems to be empty");
+                photoAlbumContainer.prepend(sWarning);
+                photoAlbumContainer.parents().closest(".form-group").addClass('has-error');
+            }
+            photos.service._createPhotoAlbum(data, {
+                success: function (response) {
+                    if(response.status == false){
+                        var photoAlbumContainer = $('input[name="photo-album-name"]').parent();
+                        var sWarning = $("<span></span>").addClass("help-block help-block-error-message");
+                        sWarning.html(response.message);
+                        photoAlbumContainer.prepend(sWarning);
+                        photoAlbumContainer.parents().closest(".form-group").addClass('has-error');
+                    }
+                    else{
+                        var files = e.target.files;
+                        var form = new FormData();
+                        for(var i = 0; i < files.length; i++){
+                            var imgPreviewContainer = $('<div></div>').addClass("col-xs-6 col-md-3");
+                            var imgPreview = $('<a></a>').addClass("thumbnail");
+
+                            var img = $('<img>').addClass("img-responsive").attr("src", URL.createObjectURL(files[i]));
+                            imgPreview.append(img);
+                            imgPreviewContainer.append(imgPreview);
+                            $('.images-preview').append(imgPreviewContainer);
+                        }
+                        for(var i = 0; i < files.length; i++){
+                            form.append("photo-album", files[i]);
+                            form.append("album", data.album);
+                            photos.service._uploadPhotoAlbum(form, {
+                                success: function (response) {
+                                    console.log(response);
+                                },
+                                done: function (response) {
+
+                                }
+                            });
+                            form = new FormData;
+                        }
+
+                    }
+                },
+                done: function (response) {
+                    //console.log(response);
+                }
+            });
+            
         }
     },
     FormMovement: {

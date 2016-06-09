@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['members/(:any)'] = 'UsersController/members/$1';
 $route['members'] = 'UsersController/members';
 $route['login']     =   "AuthController/login";
+$route['logout']    = "AuthController/logout";
 $route['register']  =   "AuthController/register";
 $route['update']    = "UsersController/update";
 
@@ -70,5 +71,7 @@ $route['getItem/(:any)/(:any)'] = "ProfileController/getItem/$1/$2";
 $route['profile/(:any)'] = "ProfileController/index/$1";
 
 $route['photos/getPhotosFromDirectory'] = "PhotosController/getPhotosFromDirectory";
+$route['photos/createPhotoAlbum'] = "PhotosController/createPhotoAlbum";
+$route['photos/uploadPhotoAlbum'] = "PhotosController/uploadPhotoAlbum";
 
 
