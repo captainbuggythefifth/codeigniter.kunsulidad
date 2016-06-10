@@ -70,5 +70,32 @@ photos.service = {
         }).always(function(data){
             callback && callback.done(data);
         });
+    },
+    _setAsProfile: function(data, callback){
+        $.ajax({
+            url: '/photos/setAsProfile',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function(result){
+                callback && callback.success(result);
+            }
+        }).always(function(data){
+            callback && callback.done(data);
+        });
+    },
+
+    _setAsBackground: function(data, callback){
+        $.ajax({
+            url: '/photos/setAsBackground',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function(result){
+                callback && callback.success(result);
+            }
+        }).always(function(data){
+            callback && callback.done(data);
+        });
     }
 }

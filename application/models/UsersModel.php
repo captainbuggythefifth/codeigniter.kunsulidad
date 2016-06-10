@@ -51,11 +51,9 @@ class UsersModel extends CI_Model
     }
 
     function check($sCheckFor, $sUserDetail){
-        var_dump($sCheckFor, $sUserDetail);
         $this->db->where($sCheckFor, $sUserDetail);
         $result = $this->db->get($this->table);
         if($result->num_rows > 0){
-            var_dump("DIRI");
             return false;
         }
         else{
@@ -67,6 +65,18 @@ class UsersModel extends CI_Model
         $this->db->where('email', $sUserEmail);
         $result = $this->db->get($this->table);
         return $result->row_array();
+    }
+
+    function setCurrentPhotoProfile($iUserID = null, $aUserPhoto = null){
+        $this->db->where('id', $iUserID);
+        $result = $this->db->update($this->table, $aUserPhoto);
+        return $result;
+    }
+
+    function setCurrentPhotoBackground($iUserID = null, $aUserPhoto = null){
+        $this->db->where('id', $iUserID);
+        $result = $this->db->update($this->table, $aUserPhoto);
+        return $result;
     }
 
 

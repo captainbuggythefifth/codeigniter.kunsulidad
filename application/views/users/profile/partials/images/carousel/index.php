@@ -21,8 +21,18 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-    <div class="controls-container" style="position: absolute; top: 0; right: 0;">
-        <div class="photo-delete-container">
+    <div class="controls-container" style="position: absolute; top: 15px; left: 15px; display: inline-flex">
+
+        <a href="bootstrap-elements.html" data-target="#" class="btn btn-danger btn-fab btn-fab-mini btn-raised dropdown-toggle" data-toggle="dropdown"><i class="material-icons">keyboard_arrow_down</i></a>
+        <ul class="dropdown-menu">
+            <li><a href="javascript:void(0)" class="set-as-profile">Set as Profile Picture</a></li>
+            <li><a href="javascript:void(0)" class="set-as-background">Set as Background Picture</a></li>
+            <li><a href="javascript:void(0)" class="update-caption">Edit caption</a></li>
+            <li><a href="javascript:void(0)">Delete from Album</a></li>
+            <li class="divider"></li>
+            <li><a href="javascript:void(0)">Delete whole album</a></li>
+        </ul>
+        <!--<div class="photo-delete-container">
             <div class="photo-delete">
                 <a href="javascript:void(0)" class="btn btn-danger btn-fab btn-fab-mini btn-raised"><i class="material-icons">clear</i></a>
             </div>
@@ -31,6 +41,6 @@
             <div class="photo-delete">
                 <a href="javascript:void(0)" class="btn btn-danger btn-fab btn-fab-mini btn-raised"><i class="material-icons">clear</i></a>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>

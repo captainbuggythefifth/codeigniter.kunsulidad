@@ -73,5 +73,6 @@ $route['profile/(:any)'] = "ProfileController/index/$1";
 $route['photos/getPhotosFromDirectory'] = "PhotosController/getPhotosFromDirectory";
 $route['photos/createPhotoAlbum'] = "PhotosController/createPhotoAlbum";
 $route['photos/uploadPhotoAlbum'] = "PhotosController/uploadPhotoAlbum";
-
+$route['photos/setAsProfile'] = "PhotosController/setAsProfile";
+$route['photos/setAsBackground'] = "PhotosController/setAsBackground";
 

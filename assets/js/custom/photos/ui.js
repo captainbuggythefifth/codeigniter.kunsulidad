@@ -31,3 +31,12 @@ $body.on('click', '.carousel-container', function (e) {
 $body.on('change', 'input[name="create-photo-album[]"]', function (e) {
     photos.core.Binders._createPhotoAlbum(e);
 })
+
+$body.on('click', '.set-as-profile', function (e) {
+    photos.core.Binders._setAsProfile(e);
+})
+
+$body.on('click', '.set-as-background', function (e) {
+    photos.core.Binders._setAsBackground(e);
+})
+

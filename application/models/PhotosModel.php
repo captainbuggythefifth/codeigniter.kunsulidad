@@ -55,5 +55,10 @@ class PhotosModel extends CI_Model
         return $result->row_array();
     }
 
+    function getPhotoByChannel($sChannel){
+        $this->db->where('channel', $sChannel);
+        $result = $this->db->get($this->table);
+        return $result->row_array();
+    }
 
 }

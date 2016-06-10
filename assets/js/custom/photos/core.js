@@ -151,6 +151,66 @@ photos.core = {
                 }
             });
             
+        },
+        _setAsProfile: function (e) {
+            var $this = $(e.target);
+            var customCarousel = $('.custom-carousel-item');
+            var imgChannel = "";
+            customCarousel.each(function (index) {
+                if($(this).hasClass("active")){
+                    imgChannel = $(this).find("img").attr("src")
+                }
+            });
+            if(imgChannel != ""){
+                var data = {
+                    "channel" : imgChannel
+                };
+                photos.service._setAsProfile(data, {
+                    success : function (response) {
+                        /*if(response.status == true){
+                            
+                        }*/
+                    },
+                    done: function (response) {
+                        var options =  {
+                            content: response.message,
+                            style: "toast",
+                            timeout: 3000
+                        };
+                        $.snackbar(options);
+                    }
+                });
+            }
+        },
+        _setAsBackground: function (e) {
+            var $this = $(e.target);
+            var customCarousel = $('.custom-carousel-item');
+            var imgChannel = "";
+            customCarousel.each(function (index) {
+                if($(this).hasClass("active")){
+                    imgChannel = $(this).find("img").attr("src")
+                }
+            });
+            if(imgChannel != ""){
+                var data = {
+                    "channel" : imgChannel
+                };
+                photos.service._setAsProfile(data, {
+                    success : function (response) {
+                        /*if(response.status == true){
+
+                         }*/
+                    },
+                    done: function (response) {
+                        var options =  {
+                            content: response.message,
+                            style: "toast",
+                            timeout: 3000
+                        };
+                        $.snackbar(options);
+                    }
+                });
+            }
         }
     },
     FormMovement: {

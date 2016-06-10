@@ -290,4 +290,68 @@ class PhotosController extends CI_Controller {
 
         echo json_encode($aResult);
     }
+
+    public function setAsProfile(){
+        $sChannel = str_replace(base_url(), "", $this->input->post("channel"));
+        $aUser = $aUser = $this->session->userdata();
+        $aResult = array();
+        $aPhoto = $this->PhotosModel->getPhotoByChannel($sChannel);
+        if(is_array($aPhoto)){
+            $aUserPhoto = array(
+                "current_photo_profile_id" => $aPhoto['id']
+            );
+            $result = $this->UsersModel->setCurrentPhotoProfile($aUser['id'], $aUserPhoto);
+            if($result){
+                $aResult = array(
+                    'status'    => true,
+                    'message'   => "Successfully set as Profile Photo"
+                );
+            }
+            else{
+                $aResult = array(
+                    'status'    => false,
+                    'message'   => "Something went wrong. Please try again"
+                );
+            }
+        }else{
+            $aResult = array(
+                'status'    => false,
+                'message'   => "It seems that the photo doesn't exist. Please try another one"
+            );
+        }
+
+        echo json_encode($aResult);
+    }
+
+    public function setAsBackground(){
+        $sChannel = str_replace(base_url(), "", $this->input->post("channel"));
+        $aUser = $aUser = $this->session->userdata();
+        $aResult = array();
+        $aPhoto = $this->PhotosModel->getPhotoByChannel($sChannel);
+        if(is_array($aPhoto)){
+            $aUserPhoto = array(
+                "current_photo_background_id" => $aPhoto['id']
+            );
+            $result = $this->UsersModel->setCurrentPhotoBackground($aUser['id'], $aUserPhoto);
+            if($result){
+                $aResult = array(
+                    'status'    => true,
+                    'message'   => "Successfully set as Background Photo"
+                );
+            }
+            else{
+                $aResult = array(
+                    'status'    => false,
+                    'message'   => "Something went wrong. Please try again"
+                );
+            }
+        }else{
+            $aResult = array(
+                'status'    => false,
+                'message'   => "It seems that the photo doesn't exist. Please try another one"
+            );
+        }
+
+        echo json_encode($aResult);
+    }
 }

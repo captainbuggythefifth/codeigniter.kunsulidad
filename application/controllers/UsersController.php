@@ -87,6 +87,10 @@ class UsersController extends CI_Controller {
         }
     }
 
+    public function setCurrentPhotoProfile($iUserID = null, $iPhotoID = null){
+        
+    }
+
 
 
 

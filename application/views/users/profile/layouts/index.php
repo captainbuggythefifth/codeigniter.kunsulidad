@@ -11,6 +11,7 @@
     <link rel="stylesheet" media="all" href="/assets/css/ripples.min.css">
     <link rel="stylesheet" media="all" href="/assets/css/animate.css">
     <link rel="stylesheet" media="all" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/snackbar.min.css">
     <title>ALALAH</title>
 </head>
 <body>
@@ -95,6 +96,7 @@ if(isset($aViews) && is_array($aViews)){
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/js/material.min.js"></script>
 <script type="text/javascript" src="/assets/js/ripples.min.js"></script>
+<script type="text/javascript" src="/assets/js/snackbar.min.js"></script>
 <script type="text/javascript">
     $.material.init();
     $('[data-toggle="tooltip"]').tooltip();
