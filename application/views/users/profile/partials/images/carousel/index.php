@@ -21,7 +21,7 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-    <div class="controls-container" style="position: absolute; top: 15px; left: 15px; display: inline-flex">
+    <div class="photo-options-container">
 
         <a href="bootstrap-elements.html" data-target="#" class="btn btn-danger btn-fab btn-fab-mini btn-raised dropdown-toggle" data-toggle="dropdown"><i class="material-icons">keyboard_arrow_down</i></a>
         <ul class="dropdown-menu">
@@ -42,5 +42,13 @@
                 <a href="javascript:void(0)" class="btn btn-danger btn-fab btn-fab-mini btn-raised"><i class="material-icons">clear</i></a>
             </div>
         </div>-->
+    </div>
+    <div class="photo-caption-container" style="position: absolute; bottom: 10px"> 
+        <div class="photo-caption">
+            <p>
+                
+            </p>
+        </div>
+        
     </div>
 </div>

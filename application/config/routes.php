@@ -75,4 +75,5 @@ $route['photos/createPhotoAlbum'] = "PhotosController/createPhotoAlbum";
 $route['photos/uploadPhotoAlbum'] = "PhotosController/uploadPhotoAlbum";
 $route['photos/setAsProfile'] = "PhotosController/setAsProfile";
 $route['photos/setAsBackground'] = "PhotosController/setAsBackground";
+$route['photos/getPhotoByChannel'] = "PhotosController/getPhotoByChannel";
 

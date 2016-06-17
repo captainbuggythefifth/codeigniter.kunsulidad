@@ -35,6 +35,12 @@ class PhotosModel extends CI_Model
         return $result->row_array();
     }
 
+    function update($aPhoto){
+        $this->db->where('id', $aPhoto['id']);
+        $result = $this->db->update($this->table, $aPhoto);
+        return $result;
+    }
+
     function getPhotos($iOffset = 0, $iLimit = 0){
         $this->db->where('status', '1');
         $result = $this->db->get($this->table);

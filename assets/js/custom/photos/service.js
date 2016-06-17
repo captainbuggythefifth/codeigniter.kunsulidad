@@ -97,5 +97,19 @@ photos.service = {
         }).always(function(data){
             callback && callback.done(data);
         });
-    }
+    },
+
+    _getPhotoByChannel: function(data, callback){
+        $.ajax({
+            url: '/photos/getPhotoByChannel',
+            type: 'GET',
+            dataType: 'json',
+            data: data,
+            success: function(result){
+                callback && callback.success(result);
+            }
+        }).always(function(data){
+            callback && callback.done(data);
+        });
+    },
 }

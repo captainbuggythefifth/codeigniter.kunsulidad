@@ -247,8 +247,7 @@ class PhotosController extends CI_Controller {
     }
 
     function uploadPhotoAlbum(){
-        //TODO
-        //echo json_encode("SUD");
+
         $config['allowed_types'] = 'gif|jpg|png';
         $config['encrypt_name'] = TRUE;
 
@@ -274,7 +273,7 @@ class PhotosController extends CI_Controller {
         else{
             $aPhoto = array(
                 'user_id' => $aUser['id'],
-                'channel'   => $config['upload_path'] . $this->upload->data('file_name'),
+                'channel'   => $config['upload_path'] . "/" . $this->upload->data('file_name'),
                 'type'  => PhotosModel::TYPE_USERS_ALBUM
             );
 
@@ -293,7 +292,7 @@ class PhotosController extends CI_Controller {
 
     public function setAsProfile(){
         $sChannel = str_replace(base_url(), "", $this->input->post("channel"));
-        $aUser = $aUser = $this->session->userdata();
+        $aUser  = $this->session->userdata();
         $aResult = array();
         $aPhoto = $this->PhotosModel->getPhotoByChannel($sChannel);
         if(is_array($aPhoto)){
@@ -316,7 +315,8 @@ class PhotosController extends CI_Controller {
         }else{
             $aResult = array(
                 'status'    => false,
-                'message'   => "It seems that the photo doesn't exist. Please try another one"
+                'message'   => "It seems that the photo doesn't exist. Please try another one",
+                'channel'   => $sChannel
             );
         }
 
@@ -325,8 +325,9 @@ class PhotosController extends CI_Controller {
 
     public function setAsBackground(){
         $sChannel = str_replace(base_url(), "", $this->input->post("channel"));
-        $aUser = $aUser = $this->session->userdata();
+        $aUser = $this->session->userdata();
         $aResult = array();
+
         $aPhoto = $this->PhotosModel->getPhotoByChannel($sChannel);
         if(is_array($aPhoto)){
             $aUserPhoto = array(
@@ -345,6 +346,59 @@ class PhotosController extends CI_Controller {
                     'message'   => "Something went wrong. Please try again"
                 );
             }
+        }else{
+            $aResult = array(
+                'status'    => false,
+                'message'   => "It seems that the photo doesn't exist. Please try another one"
+            );
+        }
+
+        echo json_encode($aResult);
+    }
+
+    public function updateCaption(){
+        $sChannel = str_replace(base_url(), "", $this->input->post("channel"));
+        $aUser = $this->session->userdata();
+        $aResult = array();
+
+        $aPhoto = $this->PhotosModel->getPhotoByChannel($sChannel);
+        if(is_array($aPhoto)){
+            $aPhoto = array(
+                "caption" => $this->input->post("caption")
+            );
+            /*$result = $this->UsersModel->setCurrentPhotoBackground($aUser['id'], $aUserPhoto);*/
+            $result= $this->PhotosModel->update($aPhoto);
+            if($result){
+                $aResult = array(
+                    'status'    => true,
+                    'message'   => "Successfully updated Photo Caption"
+                );
+            }
+            else{
+                $aResult = array(
+                    'status'    => false,
+                    'message'   => "Something went wrong. Please try again"
+                );
+            }
+        }else{
+            $aResult = array(
+                'status'    => false,
+                'message'   => "It seems that the photo doesn't exist. Please try another one"
+            );
+        }
+
+        echo json_encode($aResult);
+    }
+    
+    public function getPhotoByChannel(){
+        $sChannel = str_replace(base_url(), "", urldecode($this->input->get("channel")));
+        $aPhoto = $this->PhotosModel->getPhotoByChannel($sChannel);
+        if(is_array($aPhoto)){
+            $aResult = array(
+                'status'    => true,
+                'message'   => "Successfully retrieved photo information",
+                'aPhoto'    => $aPhoto
+            );
         }else{
             $aResult = array(
                 'status'    => false,

@@ -77,14 +77,25 @@ photos.core = {
                         $('.carousel-inner').html("<div></div>");
                         var iCtr = 0;
                         $.each(result.aImages, function (index, value) {
-                            var $item = $('<div></div>').addClass("item custom-carousel-item");
-                            var $img = $('<img>').addClass("custom-carousel-image").attr("src", value);
-                            if(iCtr == 0){
-                                $item.addClass("active");
-                            }
-                            $item.html($img);
-                            $('.carousel-inner').append($item);
-                            iCtr++;
+                            var data = {
+                                channel : encodeURIComponent(value)
+                            };
+                            photos.service._getPhotoByChannel(data, {
+                                success: function (response) {
+                                    console.log(response);
+                                },
+                                done: function (response) {
+                                    var $item = $('<div></div>').addClass("item custom-carousel-item");
+                                    var $img = $('<img>').addClass("custom-carousel-image").attr("src", value);
+                                    if(iCtr == 0){
+                                        $item.addClass("active");
+                                    }
+                                    $item.html($img);
+                                    $('.carousel-inner').append($item);
+                                    iCtr++;
+                                }
+                            });
+
                         });
                         $('.carousel').show();
                         carouselContainer.css({
@@ -93,7 +104,7 @@ photos.core = {
                     }
                 },
                 done: function(result){
-
+                    console.log(result);
                 }
             });
         },
@@ -172,6 +183,7 @@ photos.core = {
                         }*/
                     },
                     done: function (response) {
+                        console.log(response);
                         var options =  {
                             content: response.message,
                             style: "toast",

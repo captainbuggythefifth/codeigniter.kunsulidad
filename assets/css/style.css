@@ -241,6 +241,18 @@ video#bgvid {
 .custom-carousel-item{
     background-color: #1f1d1d;
 }
+
+.photo-options-container{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: inline-flex
+}
+.photo-caption p{
+    color: whitesmoke;
+}
+
+
 .photo-album-add{
     position: absolute;
     height: auto;
